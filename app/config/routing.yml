@@ -1,0 +1,5 @@
+ben_core:
+    resource: "@BenCoreBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
