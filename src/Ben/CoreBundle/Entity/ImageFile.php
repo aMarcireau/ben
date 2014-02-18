@@ -43,7 +43,7 @@ class ImageFile
      *
      * @var string
      *
-     * @ORM\Column(name="display", type="string", length=255)
+     * @ORM\Column(name="display", type="string", length=255, nullable=true)
      */
     private $display;
     
@@ -53,6 +53,8 @@ class ImageFile
      * @var Ben\CoreBundle\Entity\Project
      *
      * @ORM\ManyToOne(targetEntity = "Project", inversedBy = "imageFiles")
+     * @ORM\JoinColumn(name="project_id", referencedColumnName="id", nullable=false)
+     * @Assert\NotBlank(message = "Chaque image doit appartenir à un projet")
      */
     private $project;
 
@@ -62,14 +64,12 @@ class ImageFile
      *     maxWidth = 5000,
      *     maxHeight = 5000,
      *     maxSize = "1024k",
-     *     mimeTypesMessage = "Le fichier doit être une image"
+     *     mimeTypesMessage = "Le fichier doit être une image",
      *     maxWidthMessage = "L'image ne doit pas excéder {{ max_width }}px de large",
      *     maxHeightMessage = "L'image ne doit pas excéder {{ max_height }}px de haut",
-     *     sizeNotDetectedMessage = "La taille de l'image n'a pas pu être detectée",
+     *     sizeNotDetectedMessage = "La taille de l'image n'a pas pu être detectée"
      * )
-     * * @Assert\NotBlank(
-     *     message = "Une image doit être uploadée",
-     * )
+     * @Assert\NotBlank(message = "Une image doit être uploadée")
      */
     public $file;
     

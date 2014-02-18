@@ -5,6 +5,7 @@ namespace Ben\CoreBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Project
@@ -32,6 +33,7 @@ class Project
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\NotBlank(message = "Le projet doit avoir un nom")
      */
     private $name;
 
@@ -41,6 +43,7 @@ class Project
      * @var string
      *
      * @ORM\Column(name="description", type="text")
+     * @Assert\NotBlank(message = "Le projet doit avoir une description")
      */
     private $description;
 
@@ -50,6 +53,7 @@ class Project
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
+     * @Assert\NotBlank(message = "Le projet doit avoir une date")
      */
     private $date;
     
