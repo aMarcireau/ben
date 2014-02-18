@@ -42,6 +42,14 @@ assetic:
         #yui_css:
         #    jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
 
+#Mopa Bootstrap
+mopa_bootstrap:
+    form:
+        show_legend:     false
+        checkbox_label:  label
+        horizontal_label_class:         col-md-3
+        horizontal_input_wrapper_class: col-md-7
+
 # Doctrine Configuration
 doctrine:
     dbal:
