@@ -12,8 +12,8 @@ class IndexController extends Controller
      * @Route("/")
      * @Template()
      */
-    public function indexAction($name)
+    public function indexAction()
     {
-        return array('name' => $name);
+        return array();
     }
 }
