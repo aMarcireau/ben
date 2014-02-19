@@ -1,0 +1,25 @@
+<nav class="navbar navbar-fixed-top navbar-ben" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ben-collapse">
+              <span class="sr-only">Navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ path('ben_core_welcome_index') }}">
+                Benoît Marcireau
+            </a>
+        </div>
+        
+        <!-- Collect the nav links and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ben-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ path('ben_core_welcome_index') }}">Accueil</a></li>
+                <li><a href="#">Créations</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
