@@ -95,12 +95,24 @@ fieldset {
 }
 
 
+// Form
+// --------------------------------------------------
+
+textarea {
+    resize: vertical;
+}
+
+.form-submit {
+    margin-bottom: @project-row-spacing;    
+}
+
+
 // Administration pages
 // --------------------------------------------------
 
 .project-row {
     
-    &:not(:last-of-type) {
+    &.project-container {
         border-bottom: solid 1px @navbar-ben-border;
     }
     
