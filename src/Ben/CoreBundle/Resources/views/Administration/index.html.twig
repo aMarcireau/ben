@@ -9,21 +9,31 @@
         <h1>Liste des projets</h1>
     
         {% for project in projects %}
-            <div class="row project-row">
-                <div class="col-xs-6 col-sm-3 name">
+            <div class="row project-row project-container">
+                <div class="col-xs-5 col-sm-2 name">
                     {{ project.name }}
                 </div>
-                <div class="col-xs-6 col-sm-3">
+                <div class="col-xs-7 col-sm-4">
                     {{ project.description }}
                 </div>
-                <div class="col-xs-6 col-sm-3">
+                <div class="col-xs-5 col-sm-3">
                     {{ project.date|french_date }}
                 </div>    
-                <div class="col-xs-6 col-sm-3">
-                    <a href="" type="button" class="btn btn-default">Éditer ce projet</a>
+                <div class="col-xs-7 col-sm-3">
+                    <a href="{{ path('ben_core_administration_projectedit', { 'id' : project.id }) }}" type="button" class="btn btn-default">
+                        Éditer ce projet
+                    </a>
                 </div>
             </div>
         {% endfor %}    
+    
+        <div class="row project-row">
+            <div class="col-sm-3 col-sm-offset-9">
+                <a href="#" type="button" class="btn btn-default btn-block btn-primary">
+                    Ajouter un projet
+                </a>
+            </div>
+        </div>
     </div>
 </section>
 
