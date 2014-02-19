@@ -1,3 +1,32 @@
 //
 // Custom Variables
 // --------------------------------------------------
+
+// Navbar
+// --------------------------------------------------
+
+// Navbar basics
+@navbar-height:        40px;
+@navbar-ben-color:     rgb(128,128,128);
+@navbar-ben-bg:        white;
+@navbar-ben-border:    rgb(128,128,128);
+@navbar-border-radius: 0;
+
+// Navbar links
+@navbar-ben-link-color:          @navbar-ben-color;
+@navbar-ben-link-hover-color:    darken(@navbar-ben-link-color, 30%);
+@navbar-ben-link-active-color:   darken(@navbar-ben-link-color, 30%);
+@navbar-ben-link-disabled-color: lighten(@navbar-ben-link-color, 25%);
+
+// Navbar toggle
+@navbar-ben-toggle-hover-bg:          @navbar-ben-border;
+@navbar-ben-toggle-icon-bar-bg:       @navbar-ben-border;
+@navbar-ben-toggle-icon-bar-hover-bg: black;
+@navbar-ben-toggle-border-color:      @navbar-ben-border;
+
+// Navbar brand label
+@navbar-ben-brand-color:       @navbar-ben-link-color;
+@navbar-ben-brand-hover-color: @navbar-ben-link-hover-color;
+
+// Navbar collapsing length
+@grid-float-breakpoint: @screen-md;
