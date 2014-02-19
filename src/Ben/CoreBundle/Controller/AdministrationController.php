@@ -5,6 +5,8 @@ namespace Ben\CoreBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Ben\CoreBundle\Entity\Project;
+use Ben\CoreBUndle\Form\Type\ProjectType;
 
 /**
  * Implements methods to access administration pages
@@ -22,6 +24,32 @@ class AdministrationController extends Controller
     
         return array(
             'projects' => $projects,
+        );
+    }
+    
+    /**
+     * Edit event page
+     *
+     * @param integer $id : project id
+     * @Route("/creations/{id}/editer", requirements = {"id" = "\d+"})
+     * @Template()
+     */
+    public function projectEditAction(Project $project)
+    {
+        $request = $this->getRequest();
+        $form = $this->createForm(new ProjectType(), $project);
+
+        $form->handleRequest($request);   
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->flush();
+            
+            return $this->redirect($this->generateUrl('ben_core_administration_index'));
+        }
+        
+        return array(
+            'form'  => $form->createView(),
         );
     }
 }
