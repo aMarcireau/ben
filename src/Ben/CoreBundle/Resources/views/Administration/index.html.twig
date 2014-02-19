@@ -1,1 +1,30 @@
 {% extends 'BenCoreBundle::base-navbar.html.twig' %}
+
+{% block body %}
+{{ parent() }}
+
+<section>
+    <div class="container">
+    
+        <h1>Liste des projets</h1>
+    
+        {% for project in projects %}
+            <div class="row project-row">
+                <div class="col-xs-6 col-sm-3 name">
+                    {{ project.name }}
+                </div>
+                <div class="col-xs-6 col-sm-3">
+                    {{ project.description }}
+                </div>
+                <div class="col-xs-6 col-sm-3">
+                    {{ project.date|french_date }}
+                </div>    
+                <div class="col-xs-6 col-sm-3">
+                    <a href="" type="button" class="btn btn-default">Éditer ce projet</a>
+                </div>
+            </div>
+        {% endfor %}    
+    </div>
+</section>
+
+{% endblock %}

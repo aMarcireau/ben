@@ -17,6 +17,11 @@ class AdministrationController extends Controller
      */
     public function indexAction()
     {
-        return array();
+        $projectRepository = $this->getDoctrine()->getRepository("BenCoreBundle:Project");
+        $projects = $projectRepository->findOrderByDate();
+    
+        return array(
+            'projects' => $projects,
+        );
     }
 }

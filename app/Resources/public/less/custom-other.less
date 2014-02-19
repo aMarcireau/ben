@@ -93,3 +93,24 @@ section {
     }
 }
 
+
+// Administration pages
+// --------------------------------------------------
+
+.project-row {
+    
+    &:not(:last-of-type) {
+        border-bottom: solid 1px @navbar-ben-border;
+    }
+    
+    div {
+        max-height: @project-row-max-height;
+        overflow: scroll;
+        margin-bottom: @project-row-spacing;
+        margin-top: @project-row-spacing;
+        
+        &.name {
+            font-weight: bold;
+        }
+    }
+}
