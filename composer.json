@@ -19,8 +19,9 @@
         "sensio/framework-extra-bundle": "~3.0",
         "sensio/generator-bundle": "~2.3",
         "incenteev/composer-parameter-handler": "~2.0",
-        "mopa/bootstrap-bundle": "v3.0.0-beta3",
-        "twbs/bootstrap": "v3.0.0"
+        "mopa/bootstrap-bundle": "dev-master",
+        "twbs/bootstrap": "~3.0",
+        "leafo/lessphp": "~0.4"
     },
     "scripts": {
         "post-install-cmd": [
