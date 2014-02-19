@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             
             new Ben\CoreBundle\BenCoreBundle(),
         );
