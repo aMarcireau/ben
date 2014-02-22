@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Ben\CoreBundle\Entity\Project;
 use Ben\CoreBUndle\Form\Type\ProjectType;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Implements methods to access administration pages
@@ -38,11 +39,24 @@ class AdministrationController extends Controller
     {
         $request = $this->getRequest();
         $form = $this->createForm(new ProjectType(), $project);
-
+        
+        $originalImageFiles = new ArrayCollection();
+        foreach ($project->getImageFiles() as $imageFile) {
+            $originalImageFiles->add($imageFile);
+        }
+        
         $form->handleRequest($request);   
 
         if ($form->isValid()) {
+        
             $em = $this->getDoctrine()->getEntityManager();
+        
+            foreach ($originalImageFiles as $imageFile) {
+                if (false === $project->getImageFiles()->contains($imageFile)) {
+                    $em->remove($imageFile);
+                }
+            }
+            
             $em->flush();
             
             return $this->redirect($this->generateUrl('ben_core_administration_index'));

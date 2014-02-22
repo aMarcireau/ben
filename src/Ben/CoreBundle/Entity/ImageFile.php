@@ -15,7 +15,7 @@ use Ben\CoreBundle\Entity\Project;
  *
  * @ORM\Table()
  * @ORM\Entity
- * @ORM\HasLifecycleCallbacks
+ * @ORM\HasLifecycleCallbacks()
  * @UniqueEntity("filename")
  */
 class ImageFile
@@ -37,7 +37,7 @@ class ImageFile
      * @ORM\Column(name="filename", type="string", length=255)
      */
     private $filename;
-
+    
     /**
      * Display in which the file appears.
      *
@@ -57,7 +57,18 @@ class ImageFile
      * @Assert\NotBlank(message = "Chaque image doit appartenir à un projet")
      */
     private $project;
-
+    
+    /**
+     * Last update date
+     * This column is used to force the persistance of the object, 
+     * when only the field is changed
+     *
+     * @var \DateTime
+     *
+     * @ORM\Column(name="modified", type="datetime")
+     * @Assert\NotBlank(message = "Le fichier doit avoir une date de dernière modification")
+     */
+    private $modified;
     
     /**
      * @Assert\Image(
@@ -71,8 +82,12 @@ class ImageFile
      * )
      * @Assert\NotBlank(message = "Une image doit être uploadée")
      */
-    public $file;
+    private $file;
     
+    /**
+     * Store the old filename to delete it after the upload of a new file
+     */
+    private $oldFilename;
     
     //
     // Custom methods
@@ -83,7 +98,7 @@ class ImageFile
      *
      * @return string 
      */
-    protected function getWebDirectory()
+    static public function getWebDirectory()
     {
     
         return 'uploads/images';
@@ -129,22 +144,48 @@ class ImageFile
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
      */
-    public function upload()
+    public function uploadFile()
     {
         if (null === $this->file) {
+            
             return;
         }
         
         $this->setFilename(sha1(uniqid(mt_rand(), true)) . '.' . $this->file->guessExtension());
         $this->file->move($this->getUploadDirectory(), $this->getFilename());
-
+            
         unset($this->file);
+    }
+    
+    /**
+     * Modified function
+     * This method is called automatically before peristing an object in the database
+     *
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function updateModified()
+    {
+        $this->modified = new \DateTime();
+    }
+    
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function removeOldFile()
+    {
+        if ($this->oldFilename) {
+            unlink($this->getUploadDirectory() . '/' . $this->oldFilename);
+            
+            unset($this->oldFilename);
+        }
     }
 
     /**
      * @ORM\PostRemove()
      */
-    public function removeUpload()
+    public function removeFile()
     {
         if ($file = $this->getAbsolutePath()) {
             unlink($file);
@@ -158,9 +199,17 @@ class ImageFile
      * @return imageFile
      */
     public function setFile(UploadedFile $file)
-    {
-        $this->file = $file;
-    
+    {   
+        if ($file) {
+            $this->file = $file;
+            $this->modified = new \DateTime();
+        }
+        
+        if (isset($this->filename)) {
+                
+            $this->oldFilename = $this->getFilename();
+        }
+        
         return $this;
     }
 
@@ -255,5 +304,15 @@ class ImageFile
     public function getProject()
     {
         return $this->project;
+    }
+
+    /**
+     * Get modified
+     *
+     * @return \DateTime 
+     */
+    public function getModified()
+    {
+        return $this->modified;
     }
 }
