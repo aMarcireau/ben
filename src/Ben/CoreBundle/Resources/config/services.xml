@@ -8,5 +8,9 @@
         <service id="ben_core.twig.french_date_filter" class="Ben\CoreBundle\Twig\frenchDateExtension">
             <tag name="twig.extension" />
         </service>
+        <service id="ben_core.type.image_file" class="Ben\CoreBundle\Form\Type\ImageFileType">
+            <argument type="service" id="service_container"/>
+            <tag name="form.type" alias="image_file" />
+        </service>
     </services>
 </container>
