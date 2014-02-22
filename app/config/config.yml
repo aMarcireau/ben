@@ -68,3 +68,11 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+    
+# Ben Core Bundle
+ben_core:    
+    displays:
+        slider:  "Carrousel"
+        gallery: "Gallerie"
+        both:    "Les deux"
+        none:    "Aucun" 
