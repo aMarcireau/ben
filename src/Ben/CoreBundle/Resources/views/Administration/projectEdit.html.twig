@@ -1,3 +1,17 @@
 {% extends 'BenCoreBundle:Administration:projectBase.html.twig' %}
 
 {% block save_button_text %}Sauvegarder les modifications{% endblock %}
+
+{% block delete_button %}
+    <fieldset>
+        <div class="container">
+            <h3>Suppression</h3>
+    
+            <div class="row">
+                <div class="col-sm-7 col-sm-push-3">
+                    <a class="btn btn-danger btn-block" id="delete-project">Supprimer ce projet</a>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+{% endblock %}
