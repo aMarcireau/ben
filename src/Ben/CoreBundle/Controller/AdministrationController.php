@@ -66,4 +66,32 @@ class AdministrationController extends Controller
             'form'  => $form->createView(),
         );
     }
+    
+    /**
+     * Edit event page
+     *
+     * @Route("/creations/ajouter")
+     * @Template()
+     */
+    public function projectAddAction()
+    {
+        $request = $this->getRequest();
+        $project = new Project();
+        $form = $this->createForm(new ProjectType(), $project);
+        
+        $form->handleRequest($request);   
+
+        if ($form->isValid()) {
+        
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->persist($project);
+            $em->flush();
+            
+            return $this->redirect($this->generateUrl('ben_core_administration_index'));
+        }
+        
+        return array(
+            'form'  => $form->createView(),
+        );
+    }
 }

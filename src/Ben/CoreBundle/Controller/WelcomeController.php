@@ -17,6 +17,8 @@ class WelcomeController extends Controller
      */
     public function indexAction()
     {
+        $imageFileRepository = $this->getDoctrine()->getRepository("BenCoreBundle:ImageFile");
+    
         return array();
     }
 }
