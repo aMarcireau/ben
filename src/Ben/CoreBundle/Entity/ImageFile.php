@@ -129,7 +129,7 @@ class ImageFile
      *
      * @return string
      */
-    protected function getPath()
+    public function getPath()
     {
     
         return $this->getWebDirectory() . '/' . $this->getFilename();
