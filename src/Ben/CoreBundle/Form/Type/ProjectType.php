@@ -60,6 +60,7 @@ class ProjectType extends AbstractType
             'data_class' => 'Ben\CoreBundle\Entity\Project',
             'render_fieldset' => false,
             'show_legend' => false,
+            'cascade_validation' => true,
         ));
     }
 }
