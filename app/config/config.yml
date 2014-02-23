@@ -40,8 +40,8 @@ mopa_bootstrap:
     form:
         show_legend:     false
         checkbox_label:  label
-        horizontal_label_class:         col-md-3
-        horizontal_input_wrapper_class: col-md-7
+        horizontal_label_class:         col-sm-3
+        horizontal_input_wrapper_class: col-sm-7
 
 # Doctrine Configuration
 doctrine:
@@ -68,3 +68,11 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+    
+# Ben Core Bundle
+ben_core:    
+    displays:
+        slider:  "Carrousel"
+        gallery: "Gallerie"
+        both:    "Les deux"
+        none:    "Aucun" 

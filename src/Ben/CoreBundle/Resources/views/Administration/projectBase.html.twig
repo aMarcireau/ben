@@ -1,0 +1,72 @@
+{% extends 'BenCoreBundle::base-navbar.html.twig' %}
+
+{% block javascripts %}
+{{ parent() }}
+    {% javascripts
+        '@BenCoreBundle/Resources/Public/js/image-file-collection.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+{% block body %}
+{{ parent() }}
+
+<form class="form-horizontal" method="POST" action="{{ app.request.uri }}"  {{ form_enctype(form) }}>
+    <fieldset>
+        <div class="container">
+            <h3>Projet</h3>
+            
+            {{ form_row(form.name)        }}
+            {{ form_row(form.description) }}
+            {{ form_row(form.date)        }}
+        </div>
+    </fieldset>
+    <fieldset>
+        <div class="container">
+            <h3>Images associées</h3>
+            
+            <ul id="image-files-list" data-prototype="{{ form_widget(form.imageFiles.vars.prototype)|e }}">
+                {% for imageFile in form.imageFiles %}
+                    <li class="image-file-container">
+                        {{ form_row(imageFile.name)    }}
+                        {{ form_row(imageFile.file)    }}
+                        {{ form_row(imageFile.display) }}
+                        <div class="row">
+                            <div class="col-sm-3 col-sm-offset-7">
+                                <a class="btn btn-danger btn-block delete-image-file-field">Supprimer</a>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="row">
+                <div class="col-sm-3 col-sm-offset-7">
+                    <a class="btn btn-primary btn-block" id="add-image-file-field">Ajouter une image</a>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    
+    {% block delete_button %}{% endblock %}
+     
+    <fieldset>
+        <div class="container">
+            <h3>Sauvegarde</h3>
+                    
+            <div class="row">
+                <div class="col-sm-4 col-sm-push-6 form-submit">
+                    <button type="submit" class="btn btn-primary btn-block">{% block save_button_text %}{% endblock %}</button>
+                </div>
+                <div class="col-sm-3 col-sm-offset-3 col-sm-pull-4 form-submit">
+                    <a href="{{ path('ben_core_administration_index') }}" role="button" class="btn btn-default btn-block">Annuler</a>
+                </div>    
+            </div>
+        </div>
+        <div class="hide">
+            {{ form_rest(form) }}
+        </div>
+    </fieldset>
+</form>
+
+{% endblock %}

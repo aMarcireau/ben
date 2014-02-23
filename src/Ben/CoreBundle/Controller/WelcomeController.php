@@ -6,6 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
+/**
+ * Implements methods to access all the basic pages (welcome, contact...)
+ */
 class WelcomeController extends Controller
 {
     /**
@@ -14,6 +17,8 @@ class WelcomeController extends Controller
      */
     public function indexAction()
     {
+        $imageFileRepository = $this->getDoctrine()->getRepository("BenCoreBundle:ImageFile");
+    
         return array();
     }
 }

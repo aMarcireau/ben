@@ -1,0 +1,41 @@
+{% extends 'BenCoreBundle:Administration:projectBase.html.twig' %}
+
+{% block save_button_text %}Sauvegarder les modifications{% endblock %}
+
+{% block delete_button %}
+    <fieldset>
+        <div class="container">
+            <h3>Suppression</h3>
+    
+            <div class="row">
+                <div class="col-sm-7 col-sm-push-3">
+                    <a class="btn btn-danger btn-block" data-toggle="modal" data-target="#delete-modal" id="delete-project">Supprimer ce projet</a>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+{% endblock %}
+
+{% block body %}
+{{ parent() }}
+
+    <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="delete-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="delete-modal-label">Supprimer un projet</h4>
+                </div>
+                <div class="modal-body">
+                    <strong>Attention</strong> : supprimer ce projet entraîne la suppression des images associées !
+                </div>
+                <div class="modal-footer">
+                    <form method="POST" action="{{ path('ben_core_administration_projectdelete', { 'id' : project.id }) }}">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-danger">Supprimer ce projet</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

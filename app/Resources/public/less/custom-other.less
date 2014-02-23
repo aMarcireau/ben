@@ -77,3 +77,87 @@
         }
     }
 }
+
+// Sections, fieldsets and containers
+// --------------------------------------------------
+
+section,
+fieldset {
+    padding-top: @section-spacing;
+    
+    &:first-of-type {
+        margin-top: @navbar-height;
+    }
+    
+    &:last-of-type {
+        margin-bottom: @navbar-height;
+    }
+}
+
+
+// Modal
+// --------------------------------------------------
+
+// Prevent backgorund content to move on the left on modal opening.
+// Will probably be solved soon, check whether this is still needed after next vendor update.
+body, 
+.navbar-fixed-top, 
+.navbar-fixed-bottom {
+  margin-right: 0 !important;
+}
+
+
+// Form
+// --------------------------------------------------
+
+textarea {
+    resize: vertical;
+}
+
+.form-submit {
+    margin-bottom: @project-row-spacing;    
+}
+
+
+// Administration pages
+// --------------------------------------------------
+
+.project-row {
+    
+    &.project-container {
+        border-bottom: solid 1px @navbar-ben-border;
+    }
+    
+    div {
+        max-height: @project-row-max-height;
+        overflow: scroll;
+        margin-bottom: @project-row-spacing;
+        margin-top: @project-row-spacing;
+        
+        &.name {
+            font-weight: bold;
+        }
+    }
+}
+
+#image-files-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.image-file-container {
+    padding-bottom: @image-file-spacing;
+    padding-top: @image-file-spacing;   
+    border-bottom: solid 1px @navbar-ben-border;
+}
+
+#add-image-file-field {
+    margin-top: @image-file-spacing;
+}
+
+.image-file-name {
+    display: table-cell;
+    height: @image-file-name-width;
+    vertical-align: middle;
+}

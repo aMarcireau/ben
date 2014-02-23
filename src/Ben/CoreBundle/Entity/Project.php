@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Represents a project
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Ben\CoreBundle\Entity\ProjectRepository")
  * @UniqueEntity("name")
  */
 class Project
@@ -60,7 +60,7 @@ class Project
     /**
      * Associated image files
      *
-     * @ORM\OneToMany(targetEntity="ImageFile", mappedBy="project")
+     * @ORM\OneToMany(targetEntity="ImageFile", mappedBy="project", cascade={"persist", "remove"})
      */
     protected $imageFiles;
     
@@ -86,6 +86,7 @@ class Project
     public function addImageFile(\Ben\CoreBundle\Entity\ImageFile $imageFile)
     {
         $this->imageFiles[] = $imageFile;
+        $imageFile->setProject($this);
     
         return $this;
     }
@@ -95,9 +96,9 @@ class Project
      *
      * @param \Ben\CoreBundle\Entity\ImageFile $imageFile
      */
-    public function removeVideo(\Ben\CoreBundle\Entity\ImageFile $imageFiles)
+    public function removeImageFile(\Ben\CoreBundle\Entity\ImageFile $imageFile)
     {
-        $this->imageFiles->removeElement($imageFiles);
+        $this->imageFiles->removeElement($imageFile);
     }
 
     /**
