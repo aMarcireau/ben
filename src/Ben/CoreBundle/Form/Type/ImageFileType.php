@@ -57,6 +57,9 @@ class ImageFileType extends AbstractType
             'data_class' => 'Ben\CoreBundle\Entity\ImageFile',
             'render_fieldset' => false,
             'show_legend' => false,
+            'error_mapping' => array(
+                'fileDefined' => 'file',
+            ),
         ));
     }
 }

@@ -39,8 +39,7 @@ class ProjectType extends AbstractType
                     'allow_delete'  => true,
                     'by_reference'  => false,
                     'label'         => 'Images associées',
-                ))
-            ->add('save', 'submit');
+                ));
     }
 
     /**

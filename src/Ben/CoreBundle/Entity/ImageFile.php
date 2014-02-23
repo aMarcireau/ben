@@ -90,7 +90,6 @@ class ImageFile
      *     maxHeightMessage = "L'image ne doit pas excéder {{ max_height }}px de haut",
      *     sizeNotDetectedMessage = "La taille de l'image n'a pas pu être detectée"
      * )
-     * @Assert\NotBlank(message = "Un fichier est nécessaire")
      */
     private $file;
     
@@ -231,6 +230,19 @@ class ImageFile
     public function getFile() {
     
         return $this->file;
+    }
+    
+    /**
+     * Has file?
+     * Return true if either file or filename is defined
+     *
+     * @return boolean
+     *
+     * @Assert\True(message = "Un fichier est requis")
+     */
+    public function isFileDefined() {
+    
+        return ($this->getFile() || $this->getFilename());
     }
     
     //

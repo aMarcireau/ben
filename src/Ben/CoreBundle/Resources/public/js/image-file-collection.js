@@ -12,15 +12,19 @@ var COLLECTION_HOLDER_SELECTOR = "#image-files-list";
 var ADD_BUTTON_SELECTOR        = "#add-image-file-field";
 var DELETE_BUTTON_SELECTOR     = ".delete-image-file-field" 
 var LIST_CLASS                 = "image-file-container";
+var ERROR_CLASS                = "has-error";
 
 jQuery(document).ready(function() {
     
     // Replace file input frames
     $('.' + LIST_CLASS).find('input:file').each(function() {
         var name = $(this).parent().parent().parent().find('input:text').val();
+        var hasError = $(this).parent().parent().hasClass(ERROR_CLASS);
         
-        if (name) {
+        if (name && !hasError) {
             name = name + '.jpeg';
+        } else {
+            name = "";
         }
         
         replaceFileInput($(this), name); 
