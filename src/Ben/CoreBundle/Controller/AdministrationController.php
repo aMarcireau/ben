@@ -4,6 +4,7 @@ namespace Ben\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Ben\CoreBundle\Entity\Project;
 use Ben\CoreBUndle\Form\Type\ProjectType;
@@ -63,12 +64,13 @@ class AdministrationController extends Controller
         }
         
         return array(
-            'form'  => $form->createView(),
+            'form'    => $form->createView(),
+            'project' => $project,
         );
     }
     
     /**
-     * Edit event page
+     * Add event page
      *
      * @Route("/creations/ajouter")
      * @Template()
@@ -94,4 +96,22 @@ class AdministrationController extends Controller
             'form'  => $form->createView(),
         );
     }
+    
+    
+    /**
+     * Delete event page
+     *
+     * @param integer $id : project id
+     * @Route("/creations/{id}/supprimer", requirements = {"id" = "\d+"})
+     * @Method({"POST"})
+     * @Template()
+     */
+    public function projectDeleteAction(Project $project)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->remove($project);
+        $em->flush();
+        
+        return $this->redirect($this->generateUrl('ben_core_administration_index'));
+    } 
 }
