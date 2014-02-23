@@ -29,6 +29,7 @@
             <ul id="image-files-list" data-prototype="{{ form_widget(form.imageFiles.vars.prototype)|e }}">
                 {% for imageFile in form.imageFiles %}
                     <li class="image-file-container">
+                        {{ form_row(imageFile.name)    }}
                         {{ form_row(imageFile.file)    }}
                         {{ form_row(imageFile.display) }}
                         <div class="row">

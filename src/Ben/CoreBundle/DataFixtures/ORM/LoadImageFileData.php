@@ -23,17 +23,20 @@ class LoadImageFileData extends AbstractFixture implements DependentFixtureInter
         $this->moveImageFiles(array('data-fixture-1.jpg', 'data-fixture-2.jpg', 'data-fixture-3.jpg'));
     
         $imageFile1 = new ImageFile();
-        $imageFile1->setFilename('data-fixture-1.jpg')
+        $imageFile1->setName('Otis')
+                   ->setFilename('data-fixture-1.jpg')
                    ->setDisplay('both')
                    ->setProject($this->getReference('project_1'));
         
         $imageFile2 = new ImageFile();
-        $imageFile2->setFilename('data-fixture-2.jpg')
+        $imageFile2->setName('Cléopatre et Amonbofis')
+                   ->setFilename('data-fixture-2.jpg')
                    ->setDisplay('gallery')
                    ->setProject($this->getReference('project_1'));
                    
         $imageFile3 = new ImageFile();
-        $imageFile3->setFilename('data-fixture-3.jpg')
+        $imageFile3->setName('Amonbofis')
+                   ->setFilename('data-fixture-3.jpg')
                    ->setDisplay('slider')
                    ->setProject($this->getReference('project_2'));
 

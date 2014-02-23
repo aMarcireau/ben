@@ -30,6 +30,16 @@ class ImageFile
     private $id;
 
     /**
+     * Display name
+     *
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\NotBlank(message = "L'image doit avoir un nom")
+     */
+    private $name;
+
+    /**
      * Image filename
      *
      * @var string
@@ -80,7 +90,7 @@ class ImageFile
      *     maxHeightMessage = "L'image ne doit pas excéder {{ max_height }}px de haut",
      *     sizeNotDetectedMessage = "La taille de l'image n'a pas pu être detectée"
      * )
-     * @Assert\NotBlank(message = "Une image doit être uploadée")
+     * @Assert\NotBlank(message = "Un fichier est nécessaire")
      */
     private $file;
     
@@ -258,6 +268,29 @@ class ImageFile
     public function getFilename()
     {
         return $this->filename;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return ImageFile
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
