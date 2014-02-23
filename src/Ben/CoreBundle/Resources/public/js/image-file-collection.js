@@ -15,6 +15,17 @@ var LIST_CLASS                 = "image-file-container";
 
 jQuery(document).ready(function() {
     
+    // Replace file input frames
+    $('.' + LIST_CLASS).find('input:file').each(function() {
+        var name = $(this).parent().parent().parent().find('input:text').val();
+        
+        if (name) {
+            name = name + '.jpeg';
+        }
+        
+        replaceFileInput($(this), name); 
+    });
+    
     // Add button click listener
     $(ADD_BUTTON_SELECTOR).on('click', function(e) {
         e.preventDefault();
@@ -25,11 +36,11 @@ jQuery(document).ready(function() {
     bindDeleteListener($(DELETE_BUTTON_SELECTOR));
 });
 
-
 // Bind listeners to all the delete buttons
 function bindDeleteListener(element) {
     
     element.on('click', function(e) {
+        e.preventDefault();
         $(this).parent().parent().parent().remove();
     });
 }
@@ -47,4 +58,40 @@ function addImageFileForm(collectionHolder) {
     
     listElementPrototype.append(deleteButton).appendTo(collectionHolder);
     bindDeleteListener(deleteButton.find('a'));
+    replaceFileInput(listElementPrototype.find('input:file'));
+}
+
+function replaceFileInput(fileInput, displayedName) {
+    fileInput.addClass('hide');
+    
+    var customInput = $(
+        '<div class="row">' +
+            '<div class="col-xs-5">' +
+                '<a class="btn btn-default btn-block">Choisir une image</a>' +
+            '</div>' +
+            '<div class="col-xs-7">' +
+                '<span class="image-file-name"></span>' +
+            '</div>' +
+        '</div>'
+    );
+    
+    fileInput.parent().prepend(customInput);
+    
+    // Display name
+    if (displayedName) {
+        customInput.find('.image-file-name').html(displayedName);
+    }
+    
+    // Trigger input when the button is clicked
+    customInput.find('a').on('click', function(e) {
+        e.preventDefault();
+        fileInput.click();
+    });
+    
+    // Update name on file input change
+    fileInput.change (function() {
+        var file = this.files[0];
+    
+        customInput.find('span').html(file.name);
+    });
 }
