@@ -31,23 +31,63 @@ class LoadImageFileData extends AbstractFixture implements DependentFixtureInter
         $imageFile2 = new ImageFile();
         $imageFile2->setName('Cléopatre et Amonbofis')
                    ->setFilename('data-fixture-2.jpg')
-                   ->setDisplay('gallery')
+                   ->setDisplay('background')
                    ->setProject($this->getReference('project_1'));
                    
         $imageFile3 = new ImageFile();
         $imageFile3->setName('Amonbofis')
                    ->setFilename('data-fixture-3.jpg')
-                   ->setDisplay('background')
+                   ->setDisplay('gallery')
+                   ->setProject($this->getReference('project_2'));
+        
+        $imageFile4 = new ImageFile();
+        $imageFile4->setName('Amonbofis 2')
+                   ->setFilename('data-fixture-3.jpg')
+                   ->setDisplay('gallery')
+                   ->setProject($this->getReference('project_2'));
+                   
+        $imageFile5 = new ImageFile();
+        $imageFile5->setName('Amonbofis 3')
+                   ->setFilename('data-fixture-3.jpg')
+                   ->setDisplay('gallery')
+                   ->setProject($this->getReference('project_2'));
+        
+        $imageFile6 = new ImageFile();
+        $imageFile6->setName('Amonbofis 4')
+                   ->setFilename('data-fixture-3.jpg')
+                   ->setDisplay('gallery')
+                   ->setProject($this->getReference('project_2'));
+                   
+        $imageFile7 = new ImageFile();
+        $imageFile7->setName('Amonbofis 5')
+                   ->setFilename('data-fixture-3.jpg')
+                   ->setDisplay('gallery')
+                   ->setProject($this->getReference('project_2'));
+        
+        $imageFile8 = new ImageFile();
+        $imageFile8->setName('Amonbofis 6')
+                   ->setFilename('data-fixture-3.jpg')
+                   ->setDisplay('gallery')
                    ->setProject($this->getReference('project_2'));
 
         $manager->persist($imageFile1);
         $manager->persist($imageFile2);
         $manager->persist($imageFile3);
+        $manager->persist($imageFile4);
+        $manager->persist($imageFile5);
+        $manager->persist($imageFile6);
+        $manager->persist($imageFile7);
+        $manager->persist($imageFile8);
         $manager->flush();
         
         $this->addReference('imageFile_1', $imageFile1);
         $this->addReference('imageFile_2', $imageFile2);
         $this->addReference('imageFile_3', $imageFile3);
+        $this->addReference('imageFile_4', $imageFile1);
+        $this->addReference('imageFile_5', $imageFile2);
+        $this->addReference('imageFile_6', $imageFile3);
+        $this->addReference('imageFile_7', $imageFile1);
+        $this->addReference('imageFile_8', $imageFile2);
     }
     
     /**
