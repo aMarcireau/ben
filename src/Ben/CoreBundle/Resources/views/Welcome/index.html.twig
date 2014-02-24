@@ -1,1 +1,30 @@
 {% extends 'BenCoreBundle::base-navbar.html.twig' %}
+
+{% block body %}
+{{ parent() }}
+
+    <div class="background-container">    
+        <div style="background-image: url({{ asset(backgroundFile.path) }});"></div>
+    </div>
+    
+    <div class="background-placeholder"></div>
+    <div class="after-background-wrapper">
+        <section>
+                <div class="container">
+                    <div class="row">
+                        {% for galleryFile in galleryFiles %}
+                            <div class="col-xs-6 col-sm-3">
+                                <div class="gallery-file-container">
+                                    <div class="gallery-file-image" style="background-image: url({{ asset(galleryFile.path) }});"></div>
+                                </div>
+                            </div>    
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+            
+            
+
+{% endblock %}

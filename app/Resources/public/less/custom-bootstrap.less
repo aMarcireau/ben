@@ -1,3 +1,48 @@
 @import "../../../../vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/less/mopabootstrapbundle.less";
 @import "custom-variables.less";
 @import "custom-other.less";
+
+
+@background-ratio: 0.5;
+@gallery-ratio: 1;
+@gallery-margin: @grid-gutter-width;
+
+.background-container {
+    position: fixed;
+    top: @navbar-height;
+    width: 100%;
+    z-index: -1; 
+    
+    > div {
+        width: 100%;
+        padding-top: (100% * @background-ratio);
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+
+.background-placeholder {
+    padding-top: (100% * @background-ratio);
+    margin-top: @navbar-height;
+}
+
+.after-background-wrapper {
+    background-color: white;
+    
+    section {
+        margin-top: 0;
+    } 
+}
+
+.gallery-file-container {
+    position: relative;
+    margin-bottom: @gallery-margin;
+    
+    .gallery-file-image {
+        padding-top: (100% * @gallery-ratio);
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}

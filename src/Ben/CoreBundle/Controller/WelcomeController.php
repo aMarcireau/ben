@@ -22,16 +22,18 @@ class WelcomeController extends Controller
         $imageFileRepository = $this->getDoctrine()->getRepository("BenCoreBundle:ImageFile");
         
         $backgroundFiles = array();
-        $backgroundFiles = $imageFileRepository->findByDisplay('background');
-        $backgroundFile = $backgroundFiles[array_rand($backgroundFiles, 1)];
-        
         $galleryFiles = array();
+        
+        $backgroundFiles = $imageFileRepository->findByDisplay('background');
         $galleryFiles  = $imageFileRepository->findByDisplay('gallery');
+        
         foreach($imageFileRepository->findByDisplay('both') as $imageFile) {
             $backgroundFiles[] = $imageFile;
             $galleryFiles[]  = $imageFile;
         }
+        
         $this->orderByProjectDate($galleryFiles);
+        $backgroundFile = $backgroundFiles[array_rand($backgroundFiles, 1)];
         
         return array(
             'backgroundFile' => $backgroundFile,
