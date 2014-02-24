@@ -37,7 +37,7 @@ class LoadImageFileData extends AbstractFixture implements DependentFixtureInter
         $imageFile3 = new ImageFile();
         $imageFile3->setName('Amonbofis')
                    ->setFilename('data-fixture-3.jpg')
-                   ->setDisplay('slider')
+                   ->setDisplay('background')
                    ->setProject($this->getReference('project_2'));
 
         $manager->persist($imageFile1);

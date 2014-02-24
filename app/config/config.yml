@@ -72,7 +72,7 @@ swiftmailer:
 # Ben Core Bundle
 ben_core:    
     displays:
-        slider:  "Carrousel"
-        gallery: "Gallerie"
-        both:    "Les deux"
-        none:    "Aucun" 
+        background: "Accueil"
+        gallery:    "Gallerie"
+        both:       "Les deux"
+        none:       "Aucun" 
