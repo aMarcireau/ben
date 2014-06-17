@@ -37,7 +37,7 @@ class WelcomeController extends Controller
         
         return array(
             'backgroundFile' => $backgroundFile,
-            'galleryFiles'  => $galleryFiles,
+            'galleryFiles'   => $galleryFiles,
         );
     }
     
