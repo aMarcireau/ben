@@ -84,8 +84,9 @@ class ImageFile
      * @Assert\Image(
      *     maxWidth = 5000,
      *     maxHeight = 5000,
-     *     maxSize = "1024k",
+     *     maxSize = "1M",
      *     mimeTypesMessage = "Le fichier doit être une image",
+     *     maxSizeMessage = "Le fichier ne doit pas excéder 1 Mo pour éviter un ralentissement du site",
      *     maxWidthMessage = "L'image ne doit pas excéder {{ max_width }}px de large",
      *     maxHeightMessage = "L'image ne doit pas excéder {{ max_height }}px de haut",
      *     sizeNotDetectedMessage = "La taille de l'image n'a pas pu être detectée"
