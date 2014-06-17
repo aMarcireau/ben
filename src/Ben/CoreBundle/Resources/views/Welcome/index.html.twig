@@ -1,30 +1,62 @@
 {% extends '::base.html.twig' %}
 
+{% block javascripts %}
+{{ parent() }}
+    {% javascripts
+        '@BenCoreBundle/Resources/Public/js/welcome.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+
 {% block body %}
 {{ parent() }}
 
-    <div class="background-container">    
-        <div style="background-image: url({{ asset(backgroundFile.path) }});"></div>
+    <div class="background-container">
+        <div class="background-image" style="background-image: url({{ asset(backgroundFile.path) }});"></div>
     </div>
     
-    <div class="background-placeholder"></div>
-    <div class="after-background-wrapper">
-        <section>
+    <div id="top-wrapper">
+        <div id="name-container">
+            <div class="name first">
+                <span>BENOIT</span>
+            </div>
+            <div class="name last">
+                <span>MARCIREAU</span>
+            </div>
+            
+            <div class="background-mask"></div>
+        </div>
+        <div id="white-mask"></div>
+    </div>
+    
+    <div id="bottom-wrapper">
+    
+        <div class="window-padding"></div>
+    
+        <div class="gallery-container">
+            
+            <div class="top" id="triangle">
+            
+            </div>
+            
+            <div class="bottom">
                 <div class="container">
                     <div class="row">
                         {% for galleryFile in galleryFiles %}
-                            <div class="col-xs-6 col-sm-3">
-                                <div class="gallery-file-container">
-                                    <div class="gallery-file-image" style="background-image: url({{ asset(galleryFile.path) }});"></div>
+                            <div class="gallery-file-container col-xs-6 col-md-3">
+                                <div class="gallery-file-image" style="background-image: url('/{{ galleryFile.path }}');">
+                                    <div class="gallery-mask"></div>
                                 </div>
-                            </div>    
+                            </div>
                         {% endfor %}
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     </div>
-            
-            
-
+    
+    
+    
 {% endblock %}
